@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    QuestList: Login
+{% endblock %}
+
+{% block nav-bar %}
+    <ul>
+        <li> <a href="{% url 'home' %}"> QuestList </a> </li>
+        <li style="float:right"> <a href="{% url 'login' %}"> Login </a> </li>
+        <li style="float:right"> <a href="{% url 'signup' %}"> Sign Up </a> </li>
+
+    </ul>
+
+{% endblock %}
+
+{% block content %}
+
+    <h2> QuestList: Login </h2>
+
+    <form id="login_form" method="post">
+        {% csrf_token %}
+        {% if form %}
+            <div id="form">
+                {{ form.username.errors }}
+                {{ form.username.label_tag }}
+                {{ form.username }}
+            </div>
+
+            <div id="form">
+                {{ form.password.errors }}
+                {{ form.password.label_tag }}
+                {{ form.password }}
+            </div>
+
+            <button type="submit"> Submit </button>
+
+        {% endif %}
+
+    </form>
+{% endblock %}
