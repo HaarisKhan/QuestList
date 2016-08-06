@@ -22,13 +22,13 @@
         {% csrf_token %}
         {% if form %}
             <div id="form">
-                {{ form.username.errors }}
+                {{ form.username.errors.as_text }}
                 {{ form.username.label_tag }}
                 {{ form.username }}
             </div>
 
             <div id="form">
-                {{ form.password.errors }}
+                {{ form.password.errors.as_text }}
                 {{ form.password.label_tag }}
                 {{ form.password }}
             </div>
@@ -38,4 +38,6 @@
         {% endif %}
 
     </form>
+
+    {{ form.non_field_errors }}
 {% endblock %}

@@ -47,6 +47,20 @@
 
             <br>
 
+            <div id="form">
+                {{ form.first_name.errors.as_text }}
+                {{ form.first_name.label }}
+                {{ form.first_name }}
+            </div>
+
+            <br>
+
+            <div id="form">
+                {{ form.last_name.errors.as_text }}
+                {{ form.last_name.label }}
+                {{ form.last_name }}
+            </div>
+
             <button type="submit"> Submit </button>
         {% endif %}
     </form>

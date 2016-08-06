@@ -4,6 +4,7 @@ from django.template.context_processors import csrf
 from django.contrib.auth import authenticate, login, logout
 from . import models, forms
 
+
 # Create your views here.
 
 
@@ -15,8 +16,11 @@ def login_view(request):
     if request.POST:
         login_form = forms.PersonForm(request.POST)
         if login_form.is_valid():
-            login_form.save()
-            return HttpResponseRedirect(reverse('index'))
+            username = login_form['username'].value()
+            password = login_form['password'].value()
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return HttpResponseRedirect(reverse('home'))
         else:
             return render(request, 'main/login.html', {'form': login_form})
     else:
@@ -32,13 +36,15 @@ def signup(request):
     if request.POST:
         signup_form = forms.CreatePersonForm(request.POST)
         if signup_form.is_valid():
-            email = signup_form['username'].value()
+            user = signup_form.save()
+            user.first_name = signup_form['first_name'].value()
+            user.last_name = signup_form['last_name'].value()
+            user.save()
 
-            models.Person.objects.create(username=email)
+            models.Person.objects.create(user=user)
 
-            signup_form.save()
-
-            authenticate_user = authenticate(username = signup_form.cleaned_data['username'], password = signup_form.cleaned_data['password1'])
+            authenticate_user = authenticate(username=signup_form.cleaned_data['username'],
+                                             password=signup_form.cleaned_data['password1'])
             login(request, authenticate_user)
 
             return HttpResponseRedirect(reverse('home'))
@@ -51,3 +57,9 @@ def signup(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse('home'))
+
+
+def my_profile(request):
+    if request.user.is_authenticated():
+        print(request.user.first_name)
+    return render(request, 'main/my_profile.html')

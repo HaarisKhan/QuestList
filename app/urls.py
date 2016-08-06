@@ -1,5 +1,4 @@
 from django.conf.urls import url, include
-from django.contrib import admin
 from . import views
 
 urlpatterns = [
@@ -7,4 +6,5 @@ urlpatterns = [
     url(r'^login/$', views.login_view, name='login'),
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^logout/$', views.logout_view, name='logout'),
+    url(r'^profile/$', views.my_profile, name='profile')
 ]
