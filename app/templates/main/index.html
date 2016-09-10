@@ -25,6 +25,7 @@
 {% block content %}
     {% if user.is_authenticated %}
         <h1> Welcome, {{ user.first_name }} </h1>
+        <h2> {{ user.person.address }}</h2>
     {% else %}
         <h1> QuestList </h1>
     {% endif %}
