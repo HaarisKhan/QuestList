@@ -6,26 +6,13 @@
 {% endblock %}
 
 {% block nav-bar %}
-    {% if user.is_authenticated %}
-        <ul>
-            <li> <a href="{% url 'home' %}"> QuestList </a> </li>
-            <li style="float: right"> <a href="{% url 'logout' %}"> Logout </a> </li>
-            <li style="float: right"> <a href="{% url 'profile' %}"> My Profile </a> </li>
-        </ul>
-    {%  else %}
-        <ul>
-            <li> <a href="{% url 'home' %}"> QuestList </a> </li>
-            <li style="float:right"> <a href="{% url 'login' %}"> Login </a> </li>
-            <li style="float:right"> <a href="{% url 'signup' %}"> Sign Up </a> </li>
-
-        </ul>
-    {% endif %}
-
+    <ul>
+        <li> <a href="{% url 'home' %}"> QuestList </a> </li>
+        <li style="float: right"> <a href="{% url 'logout' %}"> Logout </a> </li>
+        <li style="float: right"> <a href="{% url 'profile' %}"> My Profile </a> </li>
+    </ul>
 {% endblock %}
 
 {% block content %}
-    
-
-    <script src="{% static 'js/main.js' %}"> </script>
 
 {% endblock %}

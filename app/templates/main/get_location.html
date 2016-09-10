@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    Update Address
+{% endblock %}
+
+{% block content %}
+    <h2> Thanks for joining QuestList! We know how painfully boring setup is for these kinds of accounts, so we'll make this quick! </h2>
+
+    <br>
+
+    <h3> Enter your address or location. With this, we can find jobs closest to you! </h3>
+
+    <br>
+
+    <label for="address"> Enter your address: </label>
+    <div id="form">
+        <input id="address" name="address">
+        <input id="submit_button" type="submit">
+    </div>
+
+{% endblock %}

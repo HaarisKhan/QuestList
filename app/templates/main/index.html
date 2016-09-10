@@ -23,10 +23,10 @@
 {% endblock %}
 
 {% block content %}
-    <h2> QuestList </h2>
-
     {% if user.is_authenticated %}
-        <h4> Welcome, {{ user.username }} </h4>
+        <h1> Welcome, {{ user.first_name }} </h1>
+    {% else %}
+        <h1> QuestList </h1>
     {% endif %}
 
 {% endblock %}

@@ -47,7 +47,7 @@ def signup(request):
                                              password=signup_form.cleaned_data['password1'])
             login(request, authenticate_user)
 
-            return HttpResponseRedirect(reverse('home'))
+            return HttpResponseRedirect(reverse('location'))
         else:
             return render(request, 'main/signup.html', {'form': signup_form})
     else:
@@ -60,6 +60,15 @@ def logout_view(request):
 
 
 def my_profile(request):
-    if request.user.is_authenticated():
-        print(request.user.first_name)
     return render(request, 'main/my_profile.html')
+
+
+def location(request):
+    if request.POST:
+        if 'address' in request.POST:
+            request.user.person.update_address(request.POST['address'])
+            request.user.save()
+
+            return HttpResponseRedirect(reverse('home'))
+
+    return render(request, 'main/get_location.html')
