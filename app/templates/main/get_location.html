@@ -15,9 +15,12 @@
     <br>
 
     <label for="address"> Enter your address: </label>
-    <div id="form">
-        <input id="address" name="address">
-        <input id="submit_button" type="submit">
-    </div>
+    <form method="post">
+        {% csrf_token %}
+        <div id="form">
+            <input id="address" name="address">
+            <input id="submit_button" type="submit">
+        </div>
+    </form>
 
 {% endblock %}

@@ -66,6 +66,7 @@ def my_profile(request):
 def location(request):
     if request.POST:
         if 'address' in request.POST:
+            print(request.POST['address'])
             request.user.person.update_address(request.POST['address'])
             request.user.save()
 
